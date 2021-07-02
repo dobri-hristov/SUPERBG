@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dodo Cars</title>
+    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet" href="./styles/notifications.css">
+    <link rel="stylesheet" href="./styles/carousel.css">
+    <link rel="stylesheet" href="./styles/responsive.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./scripts/solution.js"></script>
+    <script src="./scripts/imageUploader.js"></script>
+    <script src="https://da189i1jfloii.cloudfront.net/js/kinvey-html5-sdk-5.1.1.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="header-container web-navigation">
+            <div id="logo" class="logo logo-container links">
+                <img src="./images/logo/logo.jpg" alt="logo SUPERBG">
+            </div>
+            <ul class="links">
+                <li class="home" style="color: #007bff;">Home</li>
+                <li class="all-cars">All cars</li>
+                <li class="cars-for-sale">Cars for sale</li>
+                <li class="top-cars">Top 10 cars</li>
+                <li class="post-car">Post car</li>
+                <li class="my-cars">My cars</li>
+                <li class="userWelcome" style="cursor: auto;"></li>
+                <li class="logOut">LogOut</li>
+            </ul>
+            <ul class="links login-register">
+                <li class="login">Sign in</li>
+                <li class="register">Sign up</li>
+            </ul>
+        </div>
+        <div class="mobil-navigation">
+            <div class="mobil-nav-container">
+                <div class="logo logo-container">
+                    <img src="./images/logo/logo.jpg" alt="">
+                </div>
+                <a class="navigation-icon" onclick="mobilNanvigation()">
+                    <i class="fa fa-bars burger"></i>
+                </a>
+            </div>
+            <div id="mobil-links" style="display: none;">
+                <ul class="nav-links links">
+                    <li class="home" style="color: #007bff;">Home</li>
+
+                    <li class="all-cars">All cars</li>
+                    <li class="cars-for-sale">Cars for sale</li>
+                    <li class="top-cars">Top 10 cars</li>
+                    <li class="post-car">Post car</li>
+                    <li class="my-cars">My cars</li>
+                    <li class="userWelcome" style="cursor: auto;"></li>
+                    <li class="logOut">LogOut</li>
+                </ul>
+                <ul class="nav-links login-register links">
+                    <li class="login">Sign in</li>
+                    <li class="register">Sign up</li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <section id="loginView">
+        <div class="background-form">
+            <div class="form-container">
+                <h1>Sign in</h1>
+                <form action="#" id="loginForm" method="POST">
+                    <div class="form-group">
+                        <label for="username" class="white-labels">Username</label>
+                        <input id="username" value="" type="text" name="username" class="form-control"
+                            placeholder="Enter username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="white-labels">Password</label>
+                        <input id="password" value="" type="password" name="password" class="form-control"
+                            placeholder="Password">
+                    </div>
+                    <button type="submit" id="loginUser" class="btn btn-primary">Sign in</button>
+                </form>
+                <h4 class="mt-3 text-white">No account yet? <a href="#" id="signUpBtn"
+                        style="color:dodgerblue">Register</a>
+                </h4>
+            </div>
+        </div>
+    </section>
+
+    <section id="registerView">
+        <div class="background-form">
+            <div class="form-container">
+                <h1>Join</h1>
+                <form action="#" id="registerForm" method="POST">
+                    <div class="form-group">
+                        <label for="username" class="white-labels">Username</label>
+                        <input type="text" name="username" class="form-control" placeholder="Enter username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="white-labels">Password</label>
+                        <input type="password" name="password" class="form-control" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="repeatPassword" class="white-labels">Repeat password</label>
+                        <input type="password" name="repeatPassword" class="form-control" placeholder="Repeat password">
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="white-labels">*Email</label>
+                        <input type="text" class="form-control" placeholder="Enter Email" name="email">
+                    </div>
+                    <p class="regNote">*Not required. You will receive information about upcoming events on this Email
+                    </p>
+                    <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.
+                    </p>
+                    <button type="submit" id="registerUser" class="btn btn-primary">Create account</button>
+                </form>
+                <h4 class="mt-3 text-white">Already have an account? <a href="#" id="signInBtn"
+                        style="color:dodgerblue">Login</a></h4>
+            </div>
+        </div>
+    </section>
+
+    <section id="notLogged">
+        <h1 class="post-car-title"></h1>
+        <section class="check-log">
+            <article>
+                <h3 style="color: white;">Alredy have an account?</h3>
+                <button id="btnLogin" class="btn btn-primary">Sign in</button>
+            </article>
+            <article>
+                <h3 style="color: white;">Don't have a registration?</h3>
+                <button id="btnRegister" class="btn btn-primary">Sign Up</button>
+            </article>
+        </section>
+    </section>
+
+    <section id="postCarView" class="">
+        <h1 id="checkUser" class="post-car-title"></h1>
+        <div class="background-form ">
+            <div class="form-container">
+                <form action="#" id="carForm" method="POST">
+                    <div class="post-car-container">
+                        <img id="carImage">
+                    </div>
+                    <div class="form-group">
+                        <label for="imgUpload" class="white-labels">Post car image</label>
+                        <input id="fileImage" type="file" name="imgUpload" class="form-control" accept="image/*"
+                            onchange="showMyCarImage()">
+                    </div>
+                    <div class="form-group">
+                        <label for="carBrand" class="white-labels">Car brand</label>
+                        <input type="text" name="carBrand" class="form-control" placeholder="Enter car brand...">
+                    </div>
+                    <div class="form-group">
+                        <label for="carModel" class="white-labels">Car model</label>
+                        <input type="text" name="carModel" class="form-control" placeholder="Enter car model...">
+                    </div>
+                    <div class="form-group">
+                        <label for="carYear" class="white-labels">Car year</label>
+                        <input type="number" name="carYear" min="1900" max="2022" class="form-control"
+                            placeholder="Enter car year">
+                    </div>
+                    <div class="form-group">
+                        <label for="carPower" class="white-labels">Car power</label>
+                        <input type="number" name="carPower" min="0" class="form-control"
+                            placeholder="Enter car power (hp)">
+                    </div>
+                    <div class="form-group">
+                        <label for="textarea" class="white-labels">Car description</label>
+                        <textarea name="textarea" id="textarea" cols="30" rows="10"
+                            placeholder="Write description about the car..."></textarea>
+                    </div>
+                    <button type="submit" id="uploadCar" class="btn btn-primary">Post Your Car</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="topCarsView">
+        <article class="orders-buttons">
+            <ul class="orders-buttons-ul">
+                <li><button class="btn btn-sorted" id="powerDes">Order by Power <i
+                            class="fas fa-arrow-down"></i></button></li>
+                <li><button class="btn btn-sorted" id="powerAsc">Order by Power <i class="fas fa-arrow-up"></i></button>
+                </li>
+                <li><button class="btn btn-sorted" id="yearAsc">Order by Year <i class="fas fa-arrow-down"></i></button>
+                </li>
+                <li><button class="btn btn-sorted" id="yearDes">Order by Year <i class="fas fa-arrow-up"></i></button>
+                </li>
+            </ul>
+        </article>
+        <section id="topCarsContainer">
+
+        </section>
+    </section>
+
+    <section id="carsForSaleView" class="cars-for-sale-container">
+        <article class="car-template">
+            <div>
+                <p class="seller">MM Group</p>
+                <div class="car-img-container">
+                    <img src="./images/forsale/lamborghini-huracan.jpg"
+                        alt="Lamborghini Huracan LP 610-4 5.2 V10 4WD Mansory">
+                </div>
+            </div>
+            <div class="car-data">
+                <p>Brand: Lamborghini</p>
+                <p>Model: Huracan LP 610-4 5.2</p>
+                <p>Year: 2015</p>
+                <p>Power: 611 hp</p>
+                <p>City: Sofia</p>
+                <p>Price: 350 000 lv</p>
+            </div>
+            <div class="car-information">
+                <p>The Lamborghini Huracán simply cannot be ignored. Its simple, stunning wedge shape, nose canted
+                    down, shaving the asphalt, turns heads and slackens jaws regardless of the understated. With
+                    performance to match its wild looks, even the ‘slowest’ Huracan 0-60mph time is barely over three
+                    seconds, while top speed sits at around 202mph. Is
+                    ridiculously civilized....The bottom line The Huracán's amazing power,
+                    stunning design and engaging driving characteristics make it a very, very compelling option in the
+                    supercar stakes.</p>
+            </div>
+            <div class="seller-contacts">
+                <p>For contacts and book an appointment for a test drive</p>
+                <p><i class="fas fa-mobile-alt"></i> +359 878 869 192</p>
+                <span class="line"></span>
+                <p><i class="far fa-envelope"></i> mmgroup@abv.bg</p>
+            </div>
+        </article>
+        <article class="car-template">
+            <div>
+                <p class="seller">Dodo Cars</p>
+                <div class="car-img-container">
+                    <img src="./images/forsale/porsche-911Turbo.jpg" alt="Porsche 911 992 Turbo S GT">
+                </div>
+            </div>
+            </div>
+            <div class="car-data">
+                <p>Brand: Porsche </p>
+                <p>Model: 911 992 TURBO S GT</p>
+                <p>Year: 2019</p>
+                <p>Power: 650 к.с.</p>
+                <p>City: Varna</p>
+                <p>Price: 400 000 lv</p>
+            </div>
+            <div class="car-information">
+                <p>It’s the sharpest 911 Turbo yet, and is also the best of the 992 line-up. Packed with character to
+                    match its colossal performance, the new 992 Turbo S is hard to fault.The new 911 Turbo S is,
+                    potentially, the first 911 Turbo to feel truly distinct, with the most overt personality since the
+                    993 Turbo of the late ’90s. It feels like a 911 Turbo with a purpose, besides being a nice
+                    contributor to the profit linethe. Capacity or the turbo count the engine has always been the focal
+                    point of every 911 Turbo. And the 992 is no different..</p>
+            </div>
+            <div class="seller-contacts">
+                <p>For contacts and book an appointment for a test drive</p>
+                <p><i class="fas fa-mobile-alt"></i> +359 877 177 177</p>
+                <span class="line"></span>
+                <p><i class="far fa-envelope"></i> dodocars@gmai.com</p>
+            </div>
+        </article>
+        <article class="car-template">
+            <div>
+                <p class="seller">Soft Auto Bulgaria</p>
+                <div class="car-img-container">
+                    <img src="./images/forsale/ferrari-f8spider.jpg" alt="ferrari f8 spider 3.9 V8">
+                </div>
+            </div>
+            </div>
+            <div class="car-data">
+                <p>Марка: Ferrari</p>
+                <p>Model: F8 Spider 3.9 V8</p>
+                <p>Year: 2021</p>
+                <p>Power: 719 hp</p>
+                <p>City: Sofia</p>
+                <p>Price: 670 000 lv</p>
+            </div>
+            <div class="car-information">
+                <p>The F8 Tributo and Spider serve up a heady blend of gorgeous styling and out-of-this-world
+                    performance.Exotic in almost every sense, exhilarating takeoffs and agility, surprisingly civilized
+                    ride.Mounted behind the driver is a 710-hp twin-turbo V-8 that feeds the rear wheels through a
+                    paddle-shifted, seven-speed automatic transmission.These defining characteristics, combined with
+                    their unmistakable designs, make the 2021 F8 Tributo and Spider truly special machines.</p>
+            </div>
+            <div class="seller-contacts">
+                <p>For contacts and book an appointment for a test drive</p>
+                <p><i class="fas fa-mobile-alt"></i> +359 879 499 399</p>
+                <span class="line"></span>
+                <p><i class="far fa-envelope"></i> softautobulgaria@gmai.com</p>
+            </div>
+        </article>
+        <article class="car-template">
+            <div>
+                <p class="seller">Kartel Bulgaria</p>
+                <div class="car-img-container">
+                    <img src="./images/forsale/gtr-nismo.jpg" alt="nissan gt-r nismo 3.8 V6">
+                </div>
+            </div>
+            </div>
+            <div class="car-data">
+                <p>Марка: Nissan</p>
+                <p>Model: GTR 3.8 V6</p>
+                <p>Year: 2020</p>
+                <p>Power: 600 hp</p>
+                <p>City: Plovdiv</p>
+                <p>Price: 310 000 lv</p>
+            </div>
+            <div class="car-information">
+                <p>The 2020 GT-R Nismo could be a final farewell for Nissan’s iconic performance car – and it’s a
+                    fitting one, because it’s fantastic to drive, with a real depth of ability and great driver rewards.
+                    It’s the ultimate GT-R and still a unique experience in the performance car world. There are Brembo
+                    carbon ceramic brakes measuring a massive 410mm at the front, and many carbon fibre vents and ducts
+                    to aid with cooling the enhanced 3.8-litre twin-turbo V6 engine.</p>
+            </div>
+            <div class="seller-contacts">
+                <p>For contacts and book an appointment for a test drive</p>
+                <p><i class="fas fa-mobile-alt"></i> +359 879 222 444</p>
+                <span class="line"></span>
+                <p><i class="far fa-envelope"></i> kartel@gmai.com</p>
+            </div>
+        </article>
+        <article class="car-template">
+            <div>
+                <p class="seller">Auto Moto</p>
+                <div class="car-img-container">
+                    <img src="./images/forsale/ferrari-458.jpg" alt="FERRARI 458 Italia">
+                </div>
+            </div>
+            <div class="car-data">
+                <p>Brand: Ferrari</p>
+                <p>Model: 458 Italia</p>
+                <p>Year: 2010</p>
+                <p>Power: 566 hp</p>
+                <p>City: Sofia</p>
+                <p>Price: 280 000 lv</p>
+            </div>
+            <div class="car-information">
+                <p>The Ferrari 458 is proof of how much supercars have moved on over the years, as it's surprisingly
+                    easy to get on with in the real world. The adaptive dampers mean the 458 has a reasonably compliant
+                    ride, while the supportive and comfortable seats mean its great for long journeys.
+                    The 458 doesn't disappoint behind the wheel either. The Ferrari seven-speed dual-clutch gearbox
+                    shifts in the blink of an eye, while the standard ceramic brakes deliver massive stopping power.
+                </p>
+            </div>
+            <div class="seller-contacts">
+                <p>For contacts and book an appointment for a test drive</p>
+                <p><i class="fas fa-mobile-alt"></i> +359 878 549 517</p>
+                <span class="line"></span>
+                <p><i class="far fa-envelope"></i> automotobg@gmai.com</p>
+            </div>
+        </article>
+        <article class="car-template">
+            <div>
+                <p class="seller">Exotic Cars</p>
+                <div class="car-img-container">
+                    <img src="./images/forsale/mercedes-amgGT.jpg" alt="MERCEDES AMG GT S Coupe">
+                </div>
+            </div>
+            </div>
+            <div class="car-data">
+                <p>Марка: Mercedes</p>
+                <p>Model: AMG GT S Coupe</p>
+                <p>Year: 2014</p>
+                <p>Power: 510 hp</p>
+                <p>City: Plovdiv</p>
+                <p>Price: 210 000 lv</p>
+            </div>
+            <div class="car-information">
+                <p>A model unique to Mercedes-AMG, the GT S is a pure two-seat sportscar that makes few if any
+                    compromises in terms of performance. Powered by a new twin-turbo V8, it’s supercar fast and
+                    racetrack ready, yet it spoils its occupants with a luxurious cabin, decent space, excellent levels
+                    of refinement and the sort of safety and amenity systems you’d expect from a top-line Mercedes. AMG
+                    insists it's not targeting 911, but we think it’s got very close to the bullseye. The heart of the
+                    GT S is a new direct-injection 4.0-litre twin turbo petrol V8 that has familial links with the 265kW
+                    2.0-litre turbo four that powers the A 45 AMG.</p>
+            </div>
+            <div class="seller-contacts">
+                <p>For contacts and book an appointment for a test drive</p>
+                <p><i class="fas fa-mobile-alt"></i> +359 879 229 229</p>
+                <span class="line"></span>
+                <p><i class="far fa-envelope"></i> exoticcars@gmai.com</p>
+            </div>
+        </article>
+    </section>
+
+    <section id="myCarsView">
+
+    </section>
+
+    <section id="noMyCarView">
+
+    </section>
+
+    <main id="homeView">
+        <div id="intro" class="site-intro">
+            <div class="main-img-container">
+                <img src="./images/supercars.jpg" alt="main image supercars">
+            </div>
+            <div class="main-intro-container">
+                <div class="title-and-introduce">
+                    <h1>The right place for your supercar</h1>
+                    <h3>We love our cars</h3>
+                </div>
+            </div>
+        </div>
+        <section class="events-into">
+            <h2 class="events-title" style="text-align: center;">Upcoming events</h2>
+            <section id="eventsView" class="carousel-container">
+                <article class="carousel fade">
+                    <div class="carousel-img-container">
+                        <img src="./images/meetings/meeting-varna.jpg" alt="event image" />
+                    </div>
+                    <div class="event">
+                        <p class="title-event">SUPERBG Club Fest 2021</p>
+                        <div class="location-date">
+                            <p>Where: Rappongi beach, Varna </p>
+                            <p>Date: 17.07.2021</p>
+                            <p>Start: 09:00</p>
+                        </div>
+                    </div>
+                </article>
+                <article class="carousel fade">
+                    <div class="carousel-img-container">
+                        <img src="./images/meetings/meeting-vlas.jpg" alt="event image" />
+                    </div>
+                    <div class="event">
+                        <p class="title-event">Sea Show 2021</p>
+                        <div class="location-date">
+                            <p>Where: Dinevi Marina Yacht Port, St Vlas</p>
+                            <p>Date: 31.07.2021</p>
+                            <p>Start: 10:00</p>
+                        </div>
+                    </div>
+                </article>
+                <article class="carousel fade">
+                    <div class="carousel-img-container">
+                        <img src="./images/meetings/meeting-sofia.jpg" alt="event image" />
+                    </div>
+                    <div class="event">
+                        <p class="title-event">Sofia motor show</p>
+                        <div class="location-date">
+                            <p>Where: Inter Expo Center, Sofia </p>
+                            <p>Date: 28.08.2021</p>
+                            <p>Start: 08:00</p>
+                        </div>
+                    </div>
+                </article>
+                <article class="carousel fade">
+                    <div class="carousel-img-container">
+                        <img src="./images/meetings/meeting-plovdiv.jpg" alt="event image" />
+                    </div>
+                    <div class="event">
+                        <p class="title-event">VI National meeting of supercars Bulgaria</p>
+                        <div class="location-date">
+                            <p>Where: track "Dragon", Plovdiv </p>
+                            <p>Date: 18.09.2021</p>
+                            <p>Start: 10:00</p>
+                        </div>
+                    </div>
+                </article>
+                <article class="dots-container">
+                    <ul class="dotList">
+                    </ul>
+                </article>
+            </section>
+            <section class="carousel-container-mobile">
+                <article class="carousel-mobile fade">
+                    <div class="carousel-img-container-mobile">
+                        <img src="./images/meetings/meeting-varna.jpg" alt="event image" />
+                    </div>
+                    <div class="event">
+                        <p class="title-event">SUPERBG Club Fest 2021</p>
+                        <div class="location-date">
+                            <p>Where: Rappongi beach, Varna </p>
+                            <p>Date: 17.07.2021</p>
+                            <p>Start: 09:00</p>
+                        </div>
+                    </div>
+                </article>
+                <article class="carousel-mobile fade">
+                    <div class="carousel-img-container-mobile">
+                        <img src="./images/meetings/meeting-vlas.jpg" alt="event image" />
+                    </div>
+                    <div class="event">
+                        <p class="title-event">Sea Show 2021</p>
+                        <div class="location-date">
+                            <p>Where: Dinevi Marina Yacht Port, St Vlas</p>
+                            <p>Date: 31.07.2021</p>
+                            <p>Start: 10:00</p>
+                        </div>
+                    </div>
+                </article>
+                <article class="carousel-mobile fade">
+                    <div class="carousel-img-container-mobile">
+                        <img src="./images/meetings/meeting-sofia.jpg" alt="event image" />
+                    </div>
+                    <div class="event">
+                        <p class="title-event">Sofia motor show</p>
+                        <div class="location-date">
+                            <p>Where: Inter Expo Center, Sofia </p>
+                            <p>Date: 28.08.2021</p>
+                            <p>Start: 08:00</p>
+                        </div>
+                    </div>
+                </article>
+                <article class="carousel-mobile fade">
+                    <div class="carousel-img-container-mobile">
+                        <img src="./images/meetings/meeting-plovdiv.jpg" alt="event image" />
+                    </div>
+                    <div class="event">
+                        <p class="title-event">VI National meeting of supercars Bulgaria</p>
+                        <div class="location-date">
+                            <p>Where: track "Dragon", Plovdiv </p>
+                            <p>Date: 18.09.2021</p>
+                            <p>Start: 10:00</p>
+                        </div>
+                    </div>
+                </article>
+            </section>
+        </section>
+    </main>
+
+    <section id="allCarsView">
+
+    </section>
+
+    <section id="allCarsNotLoggView" style="padding-top: 15px;">
+        <article class="top-car-container">
+            <section class="my-car" style="margin: 20px auto;">
+                <article class="img-info-container">
+                    <article class="car-img">
+                        <img id="" src="./images/cars-users/porsche 911.jpg" alt=" porsche 911 turbo S 2018 red">
+                    </article>
+                    <article class="car-info">
+                        <div class="info-line">
+                            <p><b>Brand:</b>Porsche</p>
+                            <p><b>Model:</b>911 Turbo S</p>
+                            <p><b>Year:</b>2018</p>
+                            <p><b>Power:</b>580 hp</p>
+                        </div>
+                        <div class="car-description">
+                            <p><b>Description</b></p>
+                            <p>The most perfect sports car ever. Incredible performance, whilst being comfortable and
+                                fully suitable for everyday use. The 911 Turbo models continue this philosophy. The 911
+                                Turbo S's unique take on the theme of acceleration: a tidy, controlled, and extremely
+                                rapid accumulation of speed. New engine generation: six-cylinder horizontally opposed
+                                engine with VTG twin-turbo. The 911 Turbo S reaches 100km/h in 2.7 seconds with Launch
+                                Control and 200km/h in 8.9 seconds. Top speed: 330km/h. The new 8-speed PDK offers a
+                                perceptibly wider middle ground between comfort, performance and efficiency. Tyre sizes:
+                                255/35 ZR 20 at the front and 315/30 ZR 20 at the rear. This guarantees high traction
+                                and lateral force potential.</p>
+                        </div>
+                    </article>
+                </article>
+            </section>
+        </article>
+        <article class="top-car-container">
+            <section class="my-car" style="margin: 20px auto;">
+                <article class="img-info-container">
+                    <article class="car-img">
+                        <img id="" src="images/cars-users/ferrari f40.jpg" alt="ferrari F40">
+                    </article>
+                    <article class="car-info">
+                        <div class="info-line">
+                            <p><b>Brand:</b>Ferrari</p>
+                            <p><b>Model:</b>F40</p>
+                            <p><b>Year:</b>1990</p>
+                            <p><b>Power:</b>479 hp</p>
+                        </div>
+                        <div class="car-description">
+                            <p><b>Description</b></p>
+                            <p>The F40 put the crows feet on our stony editorial faces. The F40 has made our knees
+                                tremble involuntarily, our hearts do little stutter steps, and it made our palms
+                                disgustingly wet. Doctor, doctor! Maybe the editorial feet are touching ground, maybe
+                                not—we'll get back to you on that a little later. I can report that nothing we've ever
+                                driven can match the mix of sheer terror and raw excitement of earth-scorching around in
+                                someone else's three-quarter-million-dollar toy :). </p>
+                        </div>
+                    </article>
+                </article>
+            </section>
+        </article>
+        <article class="top-car-container">
+            <section class="my-car" style="margin: 20px auto;">
+                <article class="img-info-container">
+                    <article class="car-img">
+                        <img id="" src="./images/cars-users/lamborghini diablo.jpg" alt="lamborghini diablo 1992">
+                    </article>
+                    <article class="car-info">
+                        <div class="info-line">
+                            <p><b>Brand:</b>Lamborghini</p>
+                            <p><b>Model:</b>Diablo</p>
+                            <p><b>Year:</b>1992</p>
+                            <p><b>Power:</b>492 hp</p>
+                        </div>
+                        <div class="car-description">
+                            <p><b>Description</b></p>
+                            <p>What can you say about one of these, just flex your big toe and whoosh you are off,
+                                awesome hypercar just don't expect to be able to reverse it anywhere, there is no rear
+                                visibility but why do you need to see where you have been you gotta concentrate on where
+                                you are going especially at 328 kph. This car is amazing its luxurious, fast, looks
+                                great, handles great. This car is my everyday driver. Best car ever! If you had the
+                                choice if buying this car or another the thats the same, you would with out a doubt buy
+                                this one,.</p>
+                        </div>
+                    </article>
+                </article>
+            </section>
+        </article>
+        <article class="top-car-container">
+            <section class="my-car" style="margin: 20px auto;">
+                <article class="img-info-container">
+                    <article class="car-img">
+                        <img id="" src="./images/cars-users/nissan_gt-r 2016.jpeg" alt="nissan gt-r 2016">
+                    </article>
+                    <article class="car-info">
+                        <div class="info-line">
+                            <p><b>Brand:</b>Nissan</p>
+                            <p><b>Model:</b>GT-R</p>
+                            <p><b>Year:</b>2016</p>
+                            <p><b>Power:</b>545 hp</p>
+                        </div>
+                        <div class="car-description">
+                            <p><b>Description</b></p>
+                            <p>Brutal acceleration and amazing performance in any condition, despite being
+                                reasonably practical and even occasionally comfortable. 20-spoke, 20-inch Rays
+                                wheels that are forged, and in my opinion, quite striking -- though last year's
+                                10-spoke design was far from frumpy. This is a 545-horsepower, all-wheel-drive
+                                machine. It's a supercar with a big trunk. Fuel economy isn't really within its
+                                remit. First, hold the transmission-control switch up for a few seconds until an
+                                ominous red light comes on. This makes the shifting particularly brutal, while the
+                                light seems to ask "Are you sure about this?" Next is the suspension switch, which
+                                sits just to the right. Hold that switch up and you get a much firmer ride and
+                                another red light, asking "Does your chiropractor know what you're about to do?"
+                                Then comes the traction-control switch, with a final menacing light.</p>
+                        </div>
+                    </article>
+                </article>
+            </section>
+        </article>
+        <article class="top-car-container">
+            <section class="my-car" style="margin: 20px auto;">
+                <article class="img-info-container">
+                    <article class="car-img">
+                        <img id="" src="./images/cars-users/mclaren p1.jpg" alt="McLaren P1 2013">
+                    </article>
+                    <article class="car-info">
+                        <div class="info-line">
+                            <p><b>Brand:</b>McLaren</p>
+                            <p><b>Model:</b>P1</p>
+                            <p><b>Year:</b>2013</p>
+                            <p><b>Power:</b>727 hp</p>
+                        </div>
+                        <div class="car-description">
+                            <p><b>Description</b></p>
+                            <p>Hello! Here is some information about my car: pearl White Paint, Black Alcantara
+                                Interior,
+                                Black Leather and Alcantara Seats, Black Alcantara Steering Wheel, White Contrast
+                                Stitching, Branded Floor Mats, MSO Body Coloured Mirror Arms, Silver Brake Callipers,
+                                Stealth Wheel Finish, Meridian Surround Sound System, Parking Sensors Front and Rear,
+                                Vehicle Tracking System, Fire Extinguisher, Visual Carbon Fibre Side Panels, Visual
+                                Carbon Fibre Front Bumper, Visual Carbon Fibre LTR Exit Ducts, Visual Carbon Fibre Rear
+                                Clam Inserts, Visual Carbon Fibre Rear Bumper, Visual Carbon Fibre Rear Wing , Black
+                                Part leather interior, Left-hand drive, White,</p>
+                        </div>
+                    </article>
+                </article>
+            </section>
+        </article>
+        <article class="top-car-container">
+            <section class="my-car" style="margin: 20px auto;">
+                <article class="img-info-container">
+                    <article class="car-img">
+                        <img id="" src="./images/cars-users/ferrari roma.jpg" alt=" ferrari roma 2021">
+                    </article>
+                    <article class="car-info">
+                        <div class="info-line">
+                            <p><b>Brand:</b>Ferrari</p>
+                            <p><b>Model:</b>Roma</p>
+                            <p><b>Year:</b>2021</p>
+                            <p><b>Power:</b>612 hp</p>
+                        </div>
+                        <div class="car-description">
+                            <p><b>Description</b></p>
+                            <p>Bellissimo! Magnifico! Stupendo! All of these exclamatory Italian adjectives apply to the
+                                positively beautiful Ferrari Roma. The shapely coupe is the latest model to come out of
+                                the company's Maranello headquarters and named after the country's capital—Rome. A
+                                612-hp turbocharged V-8 is at its heart and specifically tuned to make beautiful music.
+                                Likewise, its lightweight components and myriad dynamic systems aim to make the Prancing
+                                Horse badge proud. Ferrari can be enjoyed during a nonchalant cruise or raced around
+                                winding corners. Its high-revving V-8 produces glorious sounds, and the DCT quickly
+                                adapts to requests for snappy gearchanges. Each front-seat passenger is cocooned by a
+                                sweeping dashboard that flows into the doors and floating center console. The Roma has a
+                                large center section, just don't expect its interior cubby storage to be plentiful.</p>
+                        </div>
+                    </article>
+                </article>
+            </section>
+        </article>
+        <p class="all-cars-text">Sign in to your account to see all cars!</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2021 SUPERBG. All rights reserved.</p>
+        <ul class="contacts">
+            <li><i class="fab fa-facebook facebook"></i></li>
+            <li><i class="fab fa-instagram instagram"></i></li>
+            <li><i class="fab fa-twitter-square twitter"></i></li>
+            <li><i class="fab fa-youtube youtube"></i></li>
+            </nav>
+    </footer>
+
+    <div id="notifications">
+        <div id="loadingBox" class="notification">
+            <span>Loading …</span>
+        </div>
+        <div id="infoBox" class="notification">
+            <span>Info</span>
+        </div>
+        <div id="errorBox" class="notification">
+            <span>Error</span>
+        </div>
+    </div>
+    <script>
+        startApp()
+
+        function mobilNanvigation() {
+            var x = document.getElementById("mobil-links");
+
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        }
+
+        var carousels = document.getElementsByClassName("carousel");
+        var images = document.getElementsByClassName("carousel-img-container")
+        var dotNode = document.getElementsByClassName("dot");
+        var currentIndex = 0;
+
+        for (let i = 0; i < carousels.length; i++) {
+            let newDot = document.createElement("li");
+
+            newDot.className = "dot";
+            newDot.setAttribute("onclick", "dotClick(this.id)");
+            newDot.setAttribute("id", parseInt(i));
+
+            let dotContainer = document.querySelector(".dotList");
+            dotContainer.appendChild(newDot);
+        }
+
+        function displayCarousels() {
+            for (let j = 0; j < carousels.length; j++) {
+                carousels[j].style.display = "none";
+            }
+            carousels[currentIndex].style.display = "block";
+        }
+
+        function displayImages() {
+            for (let j = 0; j < images.length; j++) {
+                images[j].style.display = "none";
+            }
+            images[currentIndex].style.display = "block";
+        }
+
+        function displayDot() {
+            for (let j = 0; j < dotNode.length; j++) {
+                dotNode[j].style.background = "";
+            }
+            dotNode[currentIndex].style.background = "white";
+        }
+
+        function dotClick(c) {
+            currentIndex = c;
+            displayCarousels();
+            displayImages();
+            displayDot();
+        }
+
+        displayCarousels();
+        displayImages();
+        displayDot();
+
+        function showSlides() {
+            for (i = 0; i < carousels.length; i++) {
+                carousels[i].style.display = "none";
+                images[i].style.display = "none";
+                dotNode[i].style.background = "";
+            }
+            currentIndex++;
+            if (currentIndex > carousels.length) { currentIndex = 1 }
+            carousels[currentIndex - 1].style.display = "block";
+            images[currentIndex - 1].style.display = "block";
+            dotNode[currentIndex - 1].style.background = "white";
+            setTimeout(showSlides, 5000);
+        }
+
+        showSlides();
+    </script>
+</body>
+
+</html>

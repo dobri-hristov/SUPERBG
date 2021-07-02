@@ -1,0 +1,178 @@
+@media all and (max-width: 1400px) {
+    .seller-contacts {
+        flex-direction: column;
+    }
+    .seller-contacts p:last-child {
+        margin-top: 0;
+    }
+    .line {
+        display: none;
+    }
+    .links {
+        padding: 0;
+    }
+    .links li {
+        margin: 3px 8px;
+        font-size: 15px;
+    }
+}
+
+@media all and (max-width: 1040px) {
+    #logo {
+        margin-left: 20px;
+    }
+    .car-template {
+        margin: 20px auto;
+        flex-basis: 47%;
+    }
+    .car-img-container {
+        height: 300px;
+    }
+    .orders-buttons ul {
+        padding: 0;
+        justify-content: space-around;
+    }
+    .form-container {
+        width: 60%;
+    }
+    #myCarsView {
+        padding: 70px 0 0 0;
+    }
+    .my-car {
+        width: 90%;
+        margin: 0 auto 30px auto;
+    }
+    .cars-for-sale-container {
+        width: 100%;
+    }
+    .top-car-container {
+        flex-direction: column;
+    }
+    .car-position, .car-position h2 {
+        margin: 0;
+    }
+}
+
+@media all and (max-width: 950px) {
+    #topCarsContainer, #allCarsView, #myCarsView, #allCarsNotLoggView {
+        width: 80%;
+    }
+    .img-info-container {
+        flex-direction: column;
+    }
+    .car-template {
+        flex-basis: 95%;
+    }
+    .car-img-container {
+        height: 90%;
+    }
+    .car-img {
+        margin: 0 0 20px 0;
+        height: 100%;
+        width: 100%;
+    }
+    .orders-buttons ul {
+        width: 95%;
+    }
+    .web-navigation {
+        display: none;
+    }
+    .mobil-navigation {
+        display: block;
+    }
+    .mobil-nav-container {
+        box-shadow: 0px 5px 12px 0px rgba(255, 255, 255, 1);
+    }
+    .links li {
+        font-size: 20px;
+        margin: 10px 0;
+    }
+}
+
+@media all and (max-width: 791px) {
+    .orders-buttons ul {
+        width: 67%;
+    }
+    .car-img-container {
+        height: 80%;
+    }
+    .check-log {
+        width: 80%;
+    }
+}
+
+@media all and (max-width: 606px) {
+    #topCarsContainer, #allCarsView, #myCarsView, #allCarsNotLoggView {
+        width: 90%;
+    }
+    .header-container {
+        box-shadow: 0px 5px 12px 0px rgba(255, 255, 255, 1);
+    }
+    .events-into {
+        margin-top: 460px;
+    }
+    .orders-buttons ul {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media all and (max-width: 500px) {
+    .carousel-container {
+        display: none;
+    }
+    .carousel-container-mobile {
+        display: flex;
+    }
+    .carousel-mobile {
+        margin: 10px 0;
+    }
+    .location-date {
+        flex-wrap: wrap;
+    }
+    .cars-for-sale-container {
+        width: 100%;
+    }
+    .car-template {
+        margin: 20px auto;
+        flex-basis: 90%;
+    }
+    .info-line {
+        flex-wrap: wrap;
+    }
+    .check-log {
+        flex-wrap: wrap;
+        justify-content: center
+    }
+    .check-log article:first-child {
+        margin-right: 0;
+    }
+    .check-log article {
+        max-width: 90%;
+        margin: 20px 0;
+    }
+    #notLogged {
+        min-height: 160vh;
+    }
+}
+
+@media all and (max-width: 350px) {
+    .carousel-mobile {
+        height: 350px;
+    }
+    .event {
+        bottom: 350px;
+    }
+}
+
+@media all and (max-width: 300px) {
+    #notLogged {
+        min-height: 200vh;
+    }
+    footer p {
+        text-align: center;
+    }
+    .contacts li {
+        font-size: 23px;
+    }
+}
